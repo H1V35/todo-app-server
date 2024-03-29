@@ -18,16 +18,16 @@ export async function createTaskService({ name, description }) {
   return createdTask;
 }
 
-export async function completeTaskService(task_id) {
-  const completedTask = await Task.findByIdAndUpdate(
-    task_id,
-    { isCompleted: true },
-    { new: true }
-  );
+export async function toggleCompleteTaskService(task_id) {
+  const task = await Task.findById(task_id);
 
-  if (!completedTask) {
+  if (!task) {
     throw new Error("Task not found");
   }
+
+  task.isCompleted = !task.isCompleted;
+
+  const completedTask = await task.save();
 
   return completedTask;
 }

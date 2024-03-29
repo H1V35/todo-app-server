@@ -2,7 +2,7 @@ import { Router } from "express";
 import {
   getTasks,
   createTask,
-  completeTask,
+  toggleCompleteTask,
   deleteTask,
   deleteCompletedTasks,
 } from "../controllers/task.controller.js";
@@ -13,7 +13,7 @@ router.get("/tasks", getTasks);
 
 router.post("/tasks", createTask);
 
-router.post("/tasks/:task_id/complete", completeTask);
+router.post("/tasks/:task_id/complete", toggleCompleteTask);
 
 router.delete("/tasks/:task_id/delete", deleteTask);
 

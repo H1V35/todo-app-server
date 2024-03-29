@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import {
   getTasksService,
   createTaskService,
-  completeTaskService,
+  toggleCompleteTaskService,
   deleteTaskService,
   deleteCompletedTasksService,
 } from "../services/task.service.js";
@@ -35,7 +35,7 @@ export async function createTask(req, res) {
   }
 }
 
-export async function completeTask(req, res) {
+export async function toggleCompleteTask(req, res) {
   try {
     const { task_id } = req.params;
 
@@ -43,7 +43,7 @@ export async function completeTask(req, res) {
       return res.status(400).json({ message: "Invalid task ID" });
     }
 
-    const task = await completeTaskService(task_id);
+    const task = await toggleCompleteTaskService(task_id);
     res.status(200).json({ data: task, message: "Task completed!" });
   } catch (error) {
     res
