@@ -26,17 +26,17 @@ Follow these instructions to get a copy of the project up and running on your lo
 
 3. **Scripts:**
 
-- **start**: `node src/server.js` - To start the server in production mode.
+   - **start**: `node src/server.js` - To start the server in production mode.
 
-```bash
-npm run start
-```
+   ```bash
+   npm run start
+   ```
 
-- **dev**: `nodemon src/server.js` - To start the server in development mode with automatic restart.
+   - **dev**: `nodemon src/server.js` - To start the server in development mode with automatic restart.
 
-```bash
-npm run dev
-```
+   ```bash
+   npm run dev
+   ```
 
 ## ✨ Config
 
@@ -79,10 +79,12 @@ Inside of this project, you'll see the following folders and files:
 
 ## 👨‍💻 Endpoints
 
-- `GET /tasks` - Get all tasks.
-- `POST /tasks` - Create a new task.
-- `POST /tasks/:task_id/complete` - Mark a task as completed.
-- `DELETE /tasks/:task_id/delete` - Delete a task by its ID.
-- `DELETE /tasks/delete-completed` - Delete all completed tasks.
+- **GET** `/tasks` - Get all tasks.
+- **POST** `/tasks` - Create a new task.
+- **POST** `/tasks/:task_id/complete` - Mark a task as completed.
+- **DELETE** `/tasks/:task_id/delete` - Delete a task by its ID.
+- **DELETE** `/tasks/delete-completed` - Delete all completed tasks.
+
+---
 
 Enjoy managing your tasks with TODO App. Happy coding! 🚀
