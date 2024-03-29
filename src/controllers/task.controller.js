@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import {
   getTasksService,
   createTaskService,
@@ -19,9 +20,14 @@ export async function getTasks(_req, res) {
 
 export async function createTask(req, res) {
   try {
-    const taskData = req.body;
-    const task = await createTaskService(taskData);
-    res.status(200).json({ data: task });
+    const { name, description } = req.body;
+
+    if (!name) {
+      return res.status(400).json({ message: "Name is required" });
+    }
+
+    const task = await createTaskService({ name, description });
+    res.status(200).json({ data: task, message: "Task created!" });
   } catch (error) {
     res
       .status(500)
@@ -32,6 +38,11 @@ export async function createTask(req, res) {
 export async function completeTask(req, res) {
   try {
     const { task_id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(task_id)) {
+      return res.status(400).json({ message: "Invalid task ID" });
+    }
+
     const task = await completeTaskService(task_id);
     res.status(200).json({ data: task, message: "Task completed!" });
   } catch (error) {
@@ -44,6 +55,11 @@ export async function completeTask(req, res) {
 export async function deleteTask(req, res) {
   try {
     const { task_id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(task_id)) {
+      return res.status(400).json({ message: "Invalid task ID" });
+    }
+
     await deleteTaskService(task_id);
     res.status(200).json({ message: "Task deleted!" });
   } catch (error) {

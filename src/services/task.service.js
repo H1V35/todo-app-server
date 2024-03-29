@@ -6,14 +6,14 @@ export async function getTasksService() {
   return tasks;
 }
 
-export async function createTaskService(taskData) {
-  const existingTask = await Task.findOne({ name: taskData.name });
+export async function createTaskService({ name, description }) {
+  const existingTask = await Task.findOne({ name });
 
   if (existingTask) {
     throw new Error("Task already exists");
   }
 
-  const createdTask = await Task.create(taskData);
+  const createdTask = await Task.create({ name, description });
 
   return createdTask;
 }
